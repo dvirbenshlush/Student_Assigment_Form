@@ -1,0 +1,6 @@
+.bash_history
+.node_modules
+.docker
+# .vscode
+.vscode/extensions/ms-dotnettools.csharp-1.23.17/.razor/
+AppDaata/Roaming/

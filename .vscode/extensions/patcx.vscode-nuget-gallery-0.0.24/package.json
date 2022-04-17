@@ -1,0 +1,93 @@
+{
+	"name": "vscode-nuget-gallery",
+	"displayName": "NuGet Gallery",
+	"publisher": "patcx",
+	"description": "NuGet Gallery Extension makes installing and uninstalling NuGet packages easier",
+	"license": "ISC",
+	"version": "0.0.24",
+	"preview": true,
+	"icon": "docs/images/icon.png",
+	"engines": {
+		"vscode": "^1.37.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pcislo/vscode-nuget-gallery"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.start"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.start",
+				"title": "Open NuGet Gallery",
+				"category": "NuGet"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "resourceExtname == .csproj || resourceExtname == .vbproj || resourceExtname == .fsproj || resourceExtname == .sln",
+					"command": "extension.start",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+			"title": "NuGet Gallery",
+			"properties": {
+				"NugetGallery.credentialProviderFolder": {
+					"type": "string",
+					"default": "%UserProfile%/.nuget/plugins/netfx/CredentialProvider.Microsoft",
+					"description": "Folder path containing CredentialProvider.Microsoft.exe"
+				},
+				"NugetGallery.sources": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"uniqueItems": true,
+					"minItems": 1,
+					"default": [
+						"{\"name\": \"nuget.org\",\"url\": \"https://api.nuget.org/v3/index.json\"}"
+					],
+					"description": "NuGet sources"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/vscode": "^1.37.0",
+		"glob": "^7.1.4",
+		"mocha": "^6.1.4",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode-test": "^1.0.2"
+	},
+	"dependencies": {
+		"axios": "^0.19.0",
+		"xmldom": "^0.1.27",
+		"xpath": "^0.0.27"
+	},
+	"__metadata": {
+		"id": "240db237-62cf-4e62-a359-54756e6b8a08",
+		"publisherId": "63d41783-afc7-45f6-90e0-36067b394c38",
+		"publisherDisplayName": "pcislo",
+		"installedTimestamp": 1626600732415
+	}
+}
